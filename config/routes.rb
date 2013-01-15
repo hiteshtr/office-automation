@@ -1,4 +1,6 @@
 Automation::Application.routes.draw do
+  get "hmms/leave"
+
   get "hmms/index"
 
   # The priority is based upon order of creation:
