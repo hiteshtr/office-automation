@@ -1,0 +1,2 @@
+module HmmsHelper
+end
