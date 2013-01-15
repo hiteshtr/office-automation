@@ -1,0 +1,21 @@
+<h1>Listing hostel_leaves</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @hostel_leaves.each do |hostel_leafe| %>
+  <tr>
+    <td><%= link_to 'Show', hostel_leafe %></td>
+    <td><%= link_to 'Edit', edit_hostel_leafe_path(hostel_leafe) %></td>
+    <td><%= link_to 'Destroy', hostel_leafe, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Hostel leave', new_hostel_leafe_path %>
