@@ -1,14 +1,22 @@
 <h1>Leave Application</h1>
 <p>
 	<%= form_tag("/leave") do %>
-  		<%= label_tag(:reg_no, "Registration No:") %>
+	<p>
+		<%= label_tag(:reg_no, "Registration No:") %>
   		<%= text_field_tag(:reg_no) %>
-  		<%= label_tag(:student_name, "Student Name:")%>
+	</p>
+	<p>
+		<%= label_tag(:student_name, "Student Name:")%>
   		<%= text_field_tag(:student_name)%>
-  		<%= label_tag(:program_discipline, "Program/Discipline:")%>
+	</p>
+	<p>
+		<%= label_tag(:program_discipline, "Program/Discipline:")%>
   		<%= select_tag(:program_discipline, options_for_select([['B.Tech', 'btech'], ['M.Tech', 'mtech'], ['Phd', 'phd']]) )%>
   		<%= select_tag(:program_discipline, options_for_select([['ICT', 'ict'], ['Systems Science', 'system_science'], ['Energy', 'energy'], ['BISS', 'biss']]) )%>
+	</p>
+  	<p>
   		<%= label_tag(:leave_period, "Leave Period:")%>
   		<%= select_date Date.today, :prefix => :start_date %>
+  	</p>
 	<% end %>
 </p>
