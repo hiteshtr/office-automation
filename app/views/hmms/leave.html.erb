@@ -1,5 +1,6 @@
+<center>
 <h1>Leave Application</h1>
-<p>
+<div id="leave_form">
 	<%= form_tag("/leave") do %>
 	<p>
 		<%= label_tag(:reg_no, "Registration No:") %>
@@ -16,12 +17,11 @@
 	</p>
   	<p>
   		<%= label_tag(:leave_period, "Leave Period:")%>
-  		<p>
-  			<%= label_tag(:start_date, "From:")%>
-  			<%= select_date Date.today, :prefix => :start_date, :start_year => Time.now.year %><br />
-  			<%= label_tag(:end_date, "To:")%>
-  			<%= select_date Date.today+1, :prefix => :end_date, :start_year => Time.now.year %>
-  		</p>
+  		<%= label_tag(:start_date, "From:")%>
+  		<%= select_date Date.today, :prefix => :start_date, :start_year => Time.now.year %>
+  		<%= label_tag(:end_date, "To:")%>
+  		<%= select_date Date.today+1, :prefix => :end_date, :start_year => Time.now.year %>
   	</p>
-	<% end %>
-</p>
+  	<% end %>
+</div>
+</center>
