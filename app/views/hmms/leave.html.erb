@@ -16,12 +16,7 @@
 	</p>
   	<p>
   		<%= label_tag(:leave_period, "Leave Period:")%>
-  		<p>
-  			<%= label_tag(:start_date, "From:")%>
-  			<%= select_date Date.today, :prefix => :start_date, :start_year => Time.now.year %><br />
-  			<%= label_tag(:end_date, "To:")%>
-  			<%= select_date Date.today+1, :prefix => :end_date, :start_year => Time.now.year %>
-  		</p>
+  		<%= select_date Date.today, :prefix => :start_date %>
   	</p>
 	<% end %>
 </p>
