@@ -1,4 +1,24 @@
 Automation::Application.routes.draw do
+  get "hmms/index"
+
+  get "hmms/index"
+  
+  get "hmms/leave_apply"
+
+  get "hmms/leave_approve_warden"
+
+  get "hmms/leave_approve_academic"
+
+  get "hmms/mess_bill"
+
+  get "hmms/setting_hostel_charges"
+
+  get "hmms/setting_mess_charges"
+
+  get "hmms/classify_hostel"
+
+  get "hmms/classify_hostel_room"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -48,7 +68,7 @@ Automation::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
+  root :to => 'hmms#index'
 
   # See how all your routes lay out with "rake routes"
 
