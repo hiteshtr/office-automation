@@ -16,14 +16,103 @@
 	<title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
   
 	<!-- Included CSS Files -->
-	<%= stylesheet_link_tag    "application" %>
+	<%= stylesheet_link_tag    "application", :media => "all"%>
 	
 	<!-- Included JS Files  -->
-	<%= javascript_include_tag "application" %>
+	<%= javascript_include_tag "application", :media => "all"%>
   
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <%= yield %>
+	
+	<!-- Top Bar -->
+	 
+	  <nav class="top-bar">
+	    <ul>
+	      <!-- Title Area -->
+	      <li class="name">
+	        <h1>
+	          <a href="#">
+	            Office-Automation
+	          </a>
+	        </h1>
+	      </li>
+	      <li class="toggle-topbar"><a href="#"></a></li>
+	    </ul>
+	 
+	    <section>
+	      <!-- Right Nav Section -->
+	      <ul class="right">
+	        <li class="divider"></li>
+	        <li class="has-dropdown">
+	          <a href="#">Main Item 1</a>
+	          <ul class="dropdown">
+	            <li><label>Section Name</label></li>
+	            <li class="has-dropdown">
+	              <a href="#" class="">Has Dropdown, Level 1</a>
+	              <ul class="dropdown">
+	                <li><a href="#">Dropdown Options</a></li>
+	                <li><a href="#">Dropdown Options</a></li>
+	                <li><a href="#">Level 2</a></li>
+	                <li><a href="#">Subdropdown Option</a></li>
+	                <li><a href="#">Subdropdown Option</a></li>
+	                <li><a href="#">Subdropdown Option</a></li>
+	              </ul>
+	            </li>
+	            <li><a href="#">Dropdown Option</a></li>
+	            <li><a href="#">Dropdown Option</a></li>
+	            <li class="divider"></li>
+	            <li><label>Section Name</label></li>
+	            <li><a href="#">Dropdown Option</a></li>
+	            <li><a href="#">Dropdown Option</a></li>
+	            <li><a href="#">Dropdown Option</a></li>
+	            <li class="divider"></li>
+	            <li><a href="#">See all &rarr;</a></li>
+	          </ul>
+	        </li>
+	        <li class="divider"></li>
+	        <li><a href="#">Main Item 2</a></li>
+	        <li class="divider"></li>
+	        <li class="has-dropdown">
+	          <a href="#">Main Item 3</a>
+	          <ul class="dropdown">
+	            <li><a href="#">Dropdown Option</a></li>
+	            <li><a href="#">Dropdown Option</a></li>
+	            <li><a href="#">Dropdown Option</a></li>
+	            <li class="divider"></li>
+	            <li><a href="#">See all &rarr;</a></li>
+	          </ul>
+	        </li>
+	      </ul>
+	    </section>
+	  </nav>
+	 
+	  <!-- End Top Bar -->
+	
+  	<%= yield %>
+  	
+  	 <!-- Footer -->
+ 
+	  <footer class="row">
+	    <div class="twelve columns">
+	      <hr />
+	      <div class="row">
+	        <div class="six columns">
+	          <p>&copy; Copyright <a href="http://iitj.ac.in">IIT-Jodhpur</a></p>
+	        </div>
+	        <div class="six columns">
+	          <ul class="link-list right">
+	            <li><a href="#">Link 1</a></li>
+	            <li><a href="#">Link 2</a></li>
+	            <li><a href="#">Link 3</a></li>
+	            <li><a href="#">Link 4</a></li>
+	          </ul>
+	        </div>
+	      </div>
+	    </div>
+	  </footer>
+	 
+	  <!-- End Footer -->
+  	
 </body>
 </html>

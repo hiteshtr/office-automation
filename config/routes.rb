@@ -4,6 +4,7 @@ Automation::Application.routes.draw do
   get "hmms/index"
   
   get "hmms/leave_apply"
+    match "hmms/add" => "hmms#add", :via => :post
 
   get "hmms/leave_approve_warden"
 

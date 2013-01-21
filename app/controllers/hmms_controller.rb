@@ -1,9 +1,6 @@
 class HmmsController < ApplicationController
   def index
   end
-  
-  def leave_apply
-  end
 
   def leave_approve_warden
   end
@@ -24,5 +21,13 @@ class HmmsController < ApplicationController
   end
 
   def classify_hostel_room
+  end
+
+  def leave_apply
+    @leaveDetails = LeaveDetails.new
+  end
+  
+  def add
+    todo = LeaveDetails.create()
   end
 end
