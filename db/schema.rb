@@ -14,16 +14,19 @@
 ActiveRecord::Schema.define(:version => 20130118064110) do
 
   create_table "leave_details", :primary_key => "leave_id", :force => true do |t|
-    t.string   "reg_no"
-    t.date     "leave_from"
-    t.date     "leave_to"
-    t.integer  "leave_duration"
-    t.text     "leave_reason"
-    t.boolean  "academic_status"
-    t.boolean  "warden_status"
-    t.boolean  "other_status"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.string   "leave_id_prefix",  :default => "L",   :null => false
+    t.string   "reg_no",                              :null => false
+    t.date     "leave_from",                          :null => false
+    t.date     "leave_to",                            :null => false
+    t.integer  "leave_duration",                      :null => false
+    t.text     "leave_reason",                        :null => false
+    t.boolean  "academic_status",  :default => false, :null => false
+    t.boolean  "warden_status",    :default => false, :null => false
+    t.boolean  "other_status",     :default => false, :null => false
+    t.string   "academic_session",                    :null => false
+    t.string   "course",                              :null => false
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
   end
 
 end

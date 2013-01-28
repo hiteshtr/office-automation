@@ -17,8 +17,11 @@ group :assets do
   # gem for foundation
   gem 'compass-rails'
   gem 'zurb-foundation'
-
-  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
+  
+  gem 'simple_form'
+  gem 'client_side_validations'
+  gem 'client_side_validations-simple_form'
+   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'

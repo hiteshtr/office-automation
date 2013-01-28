@@ -24,10 +24,21 @@ class HmmsController < ApplicationController
   end
 
   def leave_apply
-    @leaveDetails = LeaveDetails.new
+    @leaveDetail = LeaveDetails.new
+    @acadSession = getCurrentAcademicSession
   end
   
   def add
-    todo = LeaveDetails.create()
+    
+    if !@leaveDetail = LeaveDetails.create!(params[:leave_details])
+      flash[:error] = "Some Error! Please Try Again!"
+      
+    else
+      flash[:success] = "Leave has been saved successfully!"
+      @leaveDetail.save
+    end
+    
+    redirect_to "/hmms/leave"
   end
+  
 end

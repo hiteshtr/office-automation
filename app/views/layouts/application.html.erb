@@ -13,15 +13,16 @@
 	<!-- Set the viewport width to device width for mobile -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	
-	<title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
+	<title><%= content_for?(:title) ? yield(:title) : "Office Automation" %></title>
   
 	<!-- Included CSS Files -->
 	<%= stylesheet_link_tag    "application", :media => "all"%>
 	
 	<!-- Included JS Files  -->
 	<%= javascript_include_tag "application", :media => "all"%>
-  
-  <%= csrf_meta_tags %>
+	<%= javascript_include_tag :defaults, "rails.validations", "rails.validations.custom" %>
+
+  	<%= csrf_meta_tags %>
 </head>
 <body>
 	
