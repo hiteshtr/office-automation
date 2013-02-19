@@ -1,76 +1,50 @@
 Automation::Application.routes.draw do
-  get "hmms/index"
 
   get "hmms/index"
+  get "hmms/leave_apply", :as => :leave
+  get "hmms/viewleave", :as => :viewleave
+  get "hmms/leaveApproval", :as => :leaveApproval
+  get "hmms/leaveApprovalWarden", :as => :leaveApprovalWarden
+  get "hmms/leaveInfo", :as => :leaveInfo
+  get "hmms/prevLeaveApp", :as => :prevLeaveApp
+  get "hmms/prevLeaveAppOther", :as => :prevLeaveAppOther
+  get "hmms/leaveSuccessful", :as => :leaveSuccessful
+  get "hmms/sentReview", :as => :sentReview
+  get "hmms/showNotifications", :as => :showNotifications 
+  get "hmms/showNotification", :as => :showNotification
+  get "hmms/showLeaveInfoOther", :as => :showLeaveInfoOther
+  get "hmms/leaveApprovalOther", :as => :leaveApprovalOther
+  get "hmms/sentReviewOther", :as => :sentReviewOther
+  get "hmms/showDetailsOther", :as => :showDetailsOther
+  get "log_out" => "sessions#destroy", :as => "log_out"
+  get "log_in" => "sessions#new", :as => "log_in"
+  get "sign_up" => "users#new", :as => "sign_up"
   
-  get "hmms/leave_apply"
-    match "hmms/add" => "hmms#add", :via => :post
-
-  get "hmms/leave_approve_warden"
-
-  get "hmms/leave_approve_academic"
-
-  get "hmms/mess_bill"
-
-  get "hmms/setting_hostel_charges"
-
-  get "hmms/setting_mess_charges"
-
-  get "hmms/classify_hostel"
-
-  get "hmms/classify_hostel_room"
-
-  # The priority is based upon order of creation:
-  # first created -> highest priority.
-
-  # Sample of regular route:
-  #   match 'products/:id' => 'catalog#view'
-  # Keep in mind you can assign values other than :controller and :action
-
-  # Sample of named route:
-  #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
-  # This route can be invoked with purchase_url(:id => product.id)
-
-  # Sample resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
-
-  # Sample resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
-
-  # Sample resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
-
-  # Sample resource route with more complex sub-resources
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
-  #       get 'recent', :on => :collection
-  #     end
-  #   end
-
-  # Sample resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
-
-  # You can have the root of your site routed with "root"
-  # just remember to delete public/index.html.
+  match "hmms/update" => "hmms#update", :via => :post
+  match "hmms/approveLeave" => "hmms#approveLeave", :as => :approveLeave
+  match "hmms/rejectLeave" => "hmms#rejectLeave", :as => :rejectLeave
+  match "hmms/approveLeaveWarden" => "hmms#approveLeaveWarden", :as => :approveLeaveWarden
+  match "hmms/rejectLeaveWarden" => "hmms#rejectLeaveWarden", :as => :rejectLeaveWarden
+  match "hmms/add" => "hmms#add", :via => :post
+  match "hmms/getCurrentAcademicSession" => "hmms#getCurrentAcademicSession"
+  match "hmms/updateReason" => "hmms#updateReason", :as => :updateReason
+  match "hmms/undoLeaveApproval" => "hmms#undoLeaveApproval", :as => :undoLeaveApproval
+  match "hmms/showLeaveStatus" => "hmms#showLeaveStatus", :as => :showLeaveStatus
+  match "hmms/sendLeaveNotification" => "hmms#sendLeaveNotification", :as => :sendLeaveNotification
+  match "hmms/approveLeaveOther" => "hmms#approveLeaveOther", :as => :approveLeaveOther
+  match "hmms/rejectLeaveOther" => "hmms#rejectLeaveOther", :as => :rejectLeaveOther
+  match "hmms/undoLeaveApprovalOther" => "hmms#undoLeaveApprovalOther", :as => :undoLeaveApprovalOther
+  match "hmms/updateReasonOther" => "hmms#updateReasonOther", :as => :updateReasonOther
+  match "hmms/sendLeaveNotificationOther" => "hmms#sendLeaveNotificationOther", :as => :sendLeaveNotificationOther
+  
   root :to => 'hmms#index'
 
+  resources :hmms
+  resources :leave_details
+  resources :leave_status_report
+  resources :notifications
+  resources :users
+  resources :sessions
   # See how all your routes lay out with "rake routes"
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.

@@ -1,11 +1,14 @@
 class LeaveDetails < ActiveRecord::Base
-   attr_accessible :leave_id,         :leave_from, 
+  attr_accessible :leave_id,         :leave_from, 
                   :leave_to,         :leave_duration, 
-                  :reg_no,           :leave_reason, 
+                  :student_id,           :leave_reason, 
                   :academic_status,  :hostel_status,
-                  :other_status,     :reg_no,
-                  :academic_session, :course
-  validates :reg_no, :leave_from, :leave_to, :leave_duration, :leave_reason,  :presence => true
-  validates_presence_of :reg_no, :leave_from, :leave_to, :leave_duration, :leave_reason
-  validates :leave_duration, :length => { :minimum => 1 }
+                  :other_status, :final_comment,
+                  :arrival_time,     :departure_time,
+                  :academic_session, :course, :leave_status_reports_attributes
+  validates :student_id, :leave_from, :leave_to, :leave_duration, :leave_reason, :final_comment,  :presence => true
+  validates_presence_of :student_id, :leave_from, :leave_to, :leave_duration, :leave_reason, :final_comment
+  has_many :leave_status_reports
+  has_many :leave_details_others
+  belongs_to :student, :class_name => "Student", :foreign_key => :student_id
 end

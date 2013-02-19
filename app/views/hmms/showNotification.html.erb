@@ -1,0 +1,33 @@
+<center>
+	
+	<h1>Notification</h1>
+	
+	<table border="1">
+		
+		<% @showNotification.each do |note| %>
+		
+		<tr>
+			
+			<td>Sent By</td>
+			<td><%= note.sent_from %></td>
+			
+		</tr>
+		<tr>
+			<td>Subject</td>
+			<td><%= note.subject %></td>
+		</tr>
+		<tr>
+			<td>Priority</td>
+			<td><%= note.priority %></td>
+		</tr>
+		<tr>
+			<td>Body</td>
+			<td><%= note.body %></td>
+		</tr>
+		
+		<% end %>
+	</table>
+	
+	<%= link_to "Back to Inbox", showNotifications_path %>
+	
+</center>>

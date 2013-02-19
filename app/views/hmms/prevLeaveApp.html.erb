@@ -1,0 +1,56 @@
+<center>
+	
+	<h1> Previous Leave Applications </h1>
+	<table border="1">
+	
+		<tr>
+			
+			<th>Leave ID</th>
+			<th>Leave Start Date</th>
+			<th>Leave End Date</th>
+			<th>Leave Reason</th>
+			<th>Leave Status</th>
+		</tr>
+		
+		<% if !@showLeaveEverything.present? %>
+		
+		<tr>
+			<td colspan="6">No Prior Leave Applications to be shown</td>
+		</tr>
+		<% if !flash[:success].nil? %>
+  		<tr>
+  			<td colspan="6" align="center">
+  				  <div class="alert alert-success">
+                  <strong><%=flash[:success]%></strong>  
+                  </div>
+                
+  			</td>
+  		</tr>
+  		<%end%>
+		
+		<% else %>
+		
+		<% @showLeaveEverything.each do |leave| %>
+		<tr>
+			<td><%= leave.leave_id_prefix+(leave.leave_id).to_s()+'/'+leave.academic_session %></td>
+			<td><%= leave.leave_from %></td>
+			<td><%= leave.leave_to %></td>
+			<td><%= leave.leave_reason %></td>
+			<td><%= leave.academic_status %></td>
+			<td><%= link_to 'Undo', undoLeaveApproval_path(:id_param => leave.leave_id)%>
+		</tr>
+		<% if !flash[:undo_success].nil? %>
+  		<tr>
+  			<td colspan="6" align="center">
+  				  <div class="alert alert-success">
+                  <strong><%=flash[:success]%></strong>  
+                  </div>
+                
+  			</td>
+  		</tr>
+  		<% end %>
+	    <% end %>
+	    <% end %>
+	</table>
+	<%= link_to "Back to Leave Approval Page", leaveApproval_path %>
+</center>

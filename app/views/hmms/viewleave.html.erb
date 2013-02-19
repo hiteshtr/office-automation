@@ -1,0 +1,35 @@
+<%= javascript_include_tag "popbox.js" %>
+<%= javascript_include_tag "leave.js" %>
+<%= stylesheet_link_tag "popbox.css" %>
+<center>
+	<h1>Listing Leaves</h1>
+ 
+	<table border=1>
+  		<tr>
+    		<th>LeaveID</th>
+    		<th>Leave Start Date</th>
+    		<th>Leave End Date</th>
+    		<th>Leave Reason</th>
+    		<th>Leave Status (Hostel Warden)</th>
+    		<th>Leave Status (Academic Co-ordinator)</th>
+    		<th>Leave Status (Other)</th>
+  		</tr>
+
+		<% @viewLeave.each do |leave| %>
+  		<tr>
+  			<td><%= link_to leave.leave_id_prefix+(leave.leave_id).to_s()+'/'+leave.academic_session, '#', :class => "showStatus" ,\
+  			:"data-href" => showLeaveStatus_path(:id => leave.leave_id.to_s()), :remote => true %><br></td>
+  			<td><%= leave.leave_from %><br></td>
+  			<td><%= leave.leave_to %><br></td>
+  			<td><%= leave.leave_reason %><br></td>
+  			<td><%= leave.warden_status %><br></td>
+  			<td><%= leave.academic_status %><br></td>
+  			<td><%= leave.other_status %><br></td>  			
+  		</tr>
+  		<% end %>
+  	</table>
+  	<div id="viewLeaveStatus">
+  		<span class="button bClose" style="cursor: pointer;"><span>X</span></span>
+  		<div id="data"></div>
+    </div>
+</center>

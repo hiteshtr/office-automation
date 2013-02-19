@@ -1,0 +1,68 @@
+<%= javascript_include_tag "leave.js"%>
+<style>
+    body { font-size: 62.5%; }
+    label, input { display:block; }
+    input.text { margin-bottom:12px; width:95%; padding: .4em; }
+    fieldset { padding:0; border:0; margin-top:25px; }
+    h1 { font-size: 1.2em; margin: .6em 0; }
+    div#users-contain { width: 350px; margin: 20px 0; }
+    div#users-contain table { margin: 1em 0; border-collapse: collapse; width: 100%; }
+    div#users-contain table td, div#users-contain table th { border: 1px solid #eee; padding: .6em 10px; text-align: left; }
+    .ui-dialog .ui-state-error { padding: .3em; }
+    .validateTips { border: 1px solid transparent; padding: 0.3em; }
+  </style>
+<center>
+	<h1>Leave Approval/Rejection List(Hostel Warden)</h1>
+	<table border="1">
+		<tr>
+			<th>LeaveID</th>
+    		<th>Leave Start Date</th>
+    		<th>Leave End Date</th>
+    		<th>Leave Reason</th>
+    	</tr>
+		<% if !@showLeave.present? %>
+		<tr>
+			<td colspan="7" align="center">Yippeee, No Leave Applications</td>
+		</tr>
+		<% if !flash[:success].nil? %>
+		<tr>
+  			<td colspan="7" align="center">
+  				
+                 <div class="alert alert-success">
+                  <strong><%=flash[:success]%></strong>  
+                  </div>
+               
+  			</td>
+  		</tr>
+  		 <%end%>
+		<% else %>
+		<% @showLeave.each do |leave| %>
+		<tr>
+			<td><%= leave.leave_id_prefix+(leave.leave_id).to_s()+'/'+leave.academic_session %><br></td>
+  			<td><%= leave.leave_from %><br></td>
+  			<td><%= leave.leave_to %><br></td>
+  			<td><%= leave.leave_reason %><br></td>
+  			<td><%= link_to "Approve", approveLeaveWarden_path(:id_param => leave.leave_id), :confirm => "Are You Sure?" %></td>
+  			<td><%= link_to "Reject", rejectLeaveWarden_path(:id_param => leave.leave_id), :id => 'rejectLeave' %>
+  				<div id="dialog-form">
+  				
+  				</div>
+  					
+  				</td>
+  			<td><%= link_to "More", leaveInfo_path(:id_param => leave.leave_id) %></td>
+  		</tr>
+  		<% if !flash[:success].nil? %>
+  		<tr>
+  			<td colspan="7" align="center">
+  				  <div class="alert alert-success">
+                  <strong><%=flash[:success]%></strong>  
+                  </div>
+                
+  			</td>
+  		</tr>
+  		<%end%>
+		<% end %>
+		<% end %>
+	</table>
+	
+</center>

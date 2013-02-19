@@ -1,0 +1,44 @@
+<%= javascript_include_tag "leave.js"%>
+<center>
+	<h1>Leave Approval/Rejection List(<%= params[:user] %>)</h1>
+	<table border="1">
+		<tr>
+			<th>LeaveID</th>
+    		<th>Leave Start Date</th>
+    		<th>Leave End Date</th>
+    		<th>Leave Reason</th>
+    	</tr>
+		<% if !@showLeaveDetailsByOther.present? %>
+		<tr>
+			<td colspan="7" align="center">Yippeee, No Leave Applications</td>
+		</tr>
+		<% else %>
+		<% @showLeaveDetailsByOther.each do |l| %>
+		<tr>
+			<td><%= l.leave.leave_id_prefix+(l.leave_id).to_s()+'/'+l.leave.academic_session %><br></td>
+  			<td><%= l.leave.leave_from %><br></td>
+  			<td><%= l.leave.leave_to %><br></td>
+  			<td><%= l.leave.leave_reason %><br></td>
+  			<td><%= link_to "Approve", approveLeaveOther_path(:leaveid_param => l.leave.leave_id) %></td>
+  			<td><%= link_to "Reject", rejectLeaveOther_path(:leaveid_param => l.leave.leave_id), :class => 'rejectLeave' %></td>
+  			<td><%= link_to "More", showLeaveInfoOther_path(:leaveid_param => l.leave.leave_id)%></td>
+  			<td><%= link_to "Show Details", showDetailsOther_path(:leaveid_param => l.leave_id)%></td>
+  		</tr>
+  		
+		<% end %>
+		<% end %>
+	</table>
+	<table>
+	<% if !flash[:success].nil? %>
+  		<tr>
+  			<td colspan="7" align="center">
+  				  <div class="alert alert-success">
+                  <strong><%=flash[:success]%></strong>  
+                  </div>
+                
+  			</td>
+  		</tr>
+  		<%end%>
+  	</table>
+	<%= link_to "Previous Leave Applications", prevLeaveAppOther_path %>
+</center>

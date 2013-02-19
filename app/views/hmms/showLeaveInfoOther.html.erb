@@ -1,0 +1,98 @@
+<% javascript_include_tag "leave.js" %>
+<center>
+	
+	<h1>Leave Info of the Student</h1>
+	
+	<table border="1">
+		
+		<% if !@showLeaveInfoOther.present? %>
+		<tr>
+			<td colspan="2">No Data Found! Please Try Again</td>
+		</tr>
+		<%else%>
+		<% @showLeaveInfoOther.each do |l| %>
+		<tr>
+			
+			<td>Leave Id</td>
+			<td><%= l.leave.leave_id_prefix+l.leave_id.to_s()+"/"+l.leave.academic_session %></td>
+			
+		</tr>
+		<tr>
+			
+			<td>Leave Start Date</td>
+			<td><%= l.leave.leave_from %></td>
+			
+		</tr>
+		<tr>
+			
+			<td>Leave End Date</td>
+			<td><%= l.leave.leave_to %></td>
+			
+		</tr>
+		<tr>
+			
+			<td>Leave Reason</td>
+			<td><%= l.leave.leave_reason %></td>
+			
+		</tr>
+		<tr>
+			
+			<td>Leave Duration</td>
+			<td><%= l.leave.leave_duration %></td>
+			
+		</tr>
+		<%end%>
+		<%end %>
+		</table>
+		<table id="updateReasonOther">
+		<%= form_tag updateReasonOther_path do %>
+		<%=  hidden_field_tag "leaveid_param",@leaveid %>
+		<tr>
+			<td><%= label_tag(:reject_reason, "Reason for Rejection") %></td>
+			<td><%= text_area_tag(:reject_reason) %></td>
+		</tr>
+		<tr>
+			<td><%= submit_tag "Reject", {:id => "rejectLeave", :confirm => "Reject Leave?"}%></td><% end %>
+			<td><%= button_to "Approve", approveLeaveOther_path( :leaveid_param => @leaveid ), {:id => "approveLeave", :confirm => "Approve Leave?"} %></td>
+		</tr>
+		<tr>
+			<td colspan="2" align="center"><%=  link_to "Send for Review","#", :id => "reviewButtonOther" %></td>
+		</tr>
+ 	</table>
+	
+	<table id="sendReviewOther">
+ 		<%= form_tag sendLeaveNotificationOther_path do %>
+ 		<%= hidden_field_tag "leaveid_param", @leaveid %>
+ 		<tr>
+ 			<td><%= label_tag(:recipients, "Notifications To" ) %></td>
+ 			<td><%= text_field_tag(:recipients) %></td>
+ 		</tr>
+ 		<tr>
+ 			<td><%= label_tag(:body, "Message Body" ) %></td>
+ 			<td><%= text_area_tag(:body) %></td>
+ 		</tr>
+ 		<tr>
+ 			<td><%= label_tag(:priority, "Priority") %></td>
+ 			<td><table>
+ 				<tr>
+ 					<td><%= radio_button_tag "priority", "high", true, :class => "priority" %></td>
+ 					<td>High</td>
+ 				</tr>
+ 				<tr>
+ 					<td><%= radio_button_tag "priority", "medium", false, :class => "priority" %></td>
+ 					<td>Medium</td>
+ 				</tr>
+ 				<tr>
+ 					<td><%= radio_button_tag "priority", "low", false, :class => "priority" %></td>
+ 					<td>Low</td>
+ 				</tr>
+ 			</table></td>
+ 		</tr>
+ 		<tr>
+ 			<td><%= submit_tag "Send", {:id => "sendNotificationOther", :confirm => "Send Notifications?"} %></td><% end %>
+ 			<td><%= link_to "Cancel","#", :id => "cancelNotificationOther" %></td>
+ 		</tr>
+ 	</table>	 	
+	
+</center>
+

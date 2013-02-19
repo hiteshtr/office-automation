@@ -1,0 +1,27 @@
+<center>
+	
+	<h1>Leave Application Details</h1>
+	
+	<table>
+		
+		<tr>
+			<th>LeaveId</th>
+			<th>Recieved From</th>
+			<th>Decision</th>
+			<th>Comment</th>
+		</tr>
+		<% @showDetailsOther.each do |l| %>
+		<tr>
+			
+			<td><%= l.leave.leave_id_prefix+l.leave_id.to_s+"/"+l.leave.academic_session%></td>			
+			<td><%= l.sent_to %></td>
+			<td><%= l.leave_status %></td>
+			<td><%= l.comment %></td>
+			
+		</tr>
+		<%end%>
+	</table>
+
+	<%= link_to "Go to Leave Application Page", leaveApprovalOther_path %>
+	
+</center>

@@ -2,7 +2,62 @@
 <center>
 <h1>Leave Application</h1>
 <div id="leave_form">
-	<%= render 'leave' %>
+	<%= form_for @leaveDetail, :url => { :action => "add" }, :validate => true do |f|    %>
+
+		<table>
+			<tr>
+				<td><%= f.label :course, 'Course'%></td>
+				<td><%= f.select :course, options_for_select([['--Select Course--'], ['Under-Graduate', 'UG'], ['Post-Graduate', 'PG']])%></td>
+			</tr>
+			<tr>
+				<td><%= f.label :student_id, 'Student ID' %></td>
+				<td><%= f.text_field :student_id %>
+			</tr>
+			<tr>
+				<td><%= f.label :leave_reason, 'Leave Reason' %></td>
+				<td><%= f.text_area :leave_reason, :cols => 30, :rows => 10 %>
+			</tr>
+			<tr>
+				<td><%= f.label :leave_from, "Leave Start Date" %></td>
+				<td><%= f.text_field :leave_from, :class => 'datepicker' %></td>
+			</tr>
+			<tr>
+				<td><%= f.label :departure_time, "Departure Time in (HH:MM:SS)" %></td>
+				<td><%= f.text_field :departure_time, :class => 'timepicker' %></td>
+			</tr>
+			<tr>
+				<td><%= f.label :leave_to, "Leave End Date" %></td>
+				<td><%= f.text_field :leave_to, :class => 'datepicker' %>
+			</tr>
+			<tr>
+				<td><%= f.label :arrival_time, "Arrival Time in (HH:MM:SS)"%></td>
+				<td><%= f.text_field :arrival_time, :class => 'timepicker' %></td>
+			</tr>
+			<tr>
+				<td><%= f.label :leave_duration, "Leave Duration" %></td>
+				<td><%= f.text_field :leave_duration %>
+			</tr>
+			<tr>
+				<td><%= f.hidden_field :academic_session, :value => @acadSession %>
+			</tr>
+			<tr>
+				<td><%= f.hidden_field :final_comment, :value => "UNDER PROCESSING"%>
+			</tr>
+			<tr>
+				<td colspan="2" align="center"><%= f.submit "Send for Approval" %></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center">
+			    <% if !flash[:success].nil? %>
+                 <div class="alert alert-success">
+                  <button type="button" class="close" data-dismiss="alert">x</button>
+                  <strong><%=flash[:success]%></strong>  
+                  </div>
+                <%end%></td>
+			</tr>
+		</table>
+	 
+	<% end %>
 
 	<%= link_to 'Back', hmms_index_path %>
 </div>
